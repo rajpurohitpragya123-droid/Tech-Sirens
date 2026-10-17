@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600&display=swap');
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #f6f8f1;
+  color: #334d31;
+  font:
+    14px 'DM Sans',
+    'Noto Sans Devanagari',
+    sans-serif;
+}
+button,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+  border: 1px solid #d7e1cd;
+  background: #eef3e7;
+  color: #4f7045;
+  padding: 12px 16px;
+  border-radius: 7px;
+  min-height: 48px;
+}
+button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+button:hover:not(:disabled) {
+  background: #e0ead4;
+}
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #b59057;
+  outline-offset: 3px;
+}
+.shell {
+  display: flex;
+  min-height: 100vh;
+}
+aside {
+  width: 230px;
+  flex-shrink: 0;
+  padding: 35px 20px;
+  background: #fff;
+  border-right: 1px solid #e0e7d7;
+  display: flex;
+  flex-direction: column;
+}
+.brand {
+  font-size: 23px;
+  font-weight: 700;
+  color: #31583e;
+  text-decoration: none;
+}
+aside > span {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #9aab87;
+  margin-top: 15px;
+}
+nav {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+nav button {
+  text-align: left;
+  background: none;
+  border: 0;
+  font-size: 12px;
+}
+nav button.active {
+  background: #e8efdf;
+  color: #31583e;
+  font-weight: 600;
+}
+aside p {
+  font-size: 10px;
+  line-height: 1.9;
+  color: #96a785;
+  margin-top: auto;
+  padding-top: 35px;
+}
+main {
+  padding: 0 40px 30px;
+  max-width: 1400px;
+  flex: 1;
+  min-width: 0;
+}
+header {
+  height: 80px;
+  border-bottom: 1px solid #e0e7d7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #8c9e7b;
+}
+header b {
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding: 7px 10px;
+  background: #ecf1e4;
+  border-radius: 4px;
+}
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 35px 0 25px;
+}
+.heading p {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #9aab88;
+}
+.heading h1 {
+  font-size: 32px;
+  letter-spacing: -1px;
+  margin: 12px 0;
+}
+.heading > span {
+  font-size: 11px;
+  color: #9aaa87;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.stats article,
+section {
+  border: 1px solid #e0e7d7;
+  background: white;
+  border-radius: 12px;
+  padding: 26px;
+}
+.stats strong {
+  display: block;
+  font-size: 32px;
+  font-weight: 500;
+  color: #6b8d54;
+}
+.stats span {
+  font-size: 11px;
+  color: #94a780;
+  display: block;
+  margin-top: 14px;
+}
+section {
+  margin-top: 25px;
+}
+section h2 {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.4px;
+}
+section p {
+  font-size: 12px;
+  color: #94a780;
+  line-height: 1.9;
+  max-width: 780px;
+}
+.actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+.bar {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 12px;
+  color: #7c9766;
+  margin-top: 25px;
+}
+.bar span {
+  width: 100px;
+}
+.bar i {
+  height: 24px;
+  background: #91ab77;
+  border-radius: 4px;
+  max-width: 70%;
+}
+.bar b {
+  font-weight: 400;
+  white-space: nowrap;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 25px;
+  text-align: left;
+}
+th {
+  font-size: 10px;
+  color: #a2b38d;
+  padding: 12px 5px;
+  letter-spacing: 1px;
+}
+td {
+  padding: 18px 5px;
+  border-top: 1px solid #e7ecdf;
+  font-size: 12px;
+  color: #7b9563;
+}
+td strong {
+  font-weight: 500;
+}
+td small {
+  display: block;
+  font-size: 9px;
+  color: #abb99b;
+  margin-top: 6px;
+}
+td button {
+  font-size: 10px;
+  margin: 3px;
+  padding: 8px 12px;
+}
+em {
+  font-style: normal;
+  font-size: 10px;
+  padding: 6px 9px;
+  border-radius: 4px;
+  background: #f2f4e8;
+  color: #90a173;
+  white-space: nowrap;
+}
+.fleet {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  border-top: 1px solid #e7ecdf;
+  padding: 20px 0;
+  font-size: 12px;
+}
+.fleet > button {
+  margin-left: auto;
+  font-size: 10px;
+}
+.fleet strong {
+  font-weight: 500;
+}
+.fleet span {
+  color: #96ac7d;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 420px;
+  margin: 25px 0;
+  font-size: 12px;
+  color: #8ca374;
+}
+input {
+  border: 1px solid #d7e1cd;
+  border-radius: 6px;
+  padding: 13px;
+  color: #60834b;
+  background: #fafbf6;
+}
+footer {
+  font-size: 10px;
+  color: #a6b694;
+  margin-top: 35px;
+}
+.message {
+  position: fixed;
+  bottom: 25px;
+  left: 270px;
+  right: 40px;
+  background: #31583e;
+  color: white;
+  padding: 18px;
+  border-radius: 9px;
+  font-size: 12px;
+  box-shadow: 0 4px 20px #31583e22;
+}
+@media (max-width: 800px) {
+  aside {
+    width: 180px;
+    padding: 30px 13px;
+  }
+  .brand {
+    font-size: 18px;
+  }
+  main {
+    padding: 0 20px 25px;
+  }
+  .stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  table {
+    display: block;
+    overflow: auto;
+  }
+  .fleet {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .message {
+    left: 200px;
+    right: 20px;
+  }
+}
+@media (max-width: 550px) {
+  .shell {
+    flex-direction: column;
+  }
+  aside {
+    width: 100%;
+    padding: 20px;
+    border: 0;
+  }
+  .brand {
+    font-size: 23px;
+  }
+  aside > span,
+  aside > p {
+    display: none;
+  }
+  nav {
+    margin-top: 20px;
+    flex-direction: row;
+    overflow: auto;
+    gap: 8px;
+  }
+  nav button {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  main {
+    padding: 0 16px 25px;
+  }
+  header {
+    height: 60px;
+  }
+  .heading {
+    margin-top: 25px;
+  }
+  .heading h1 {
+    font-size: 28px;
+  }
+  .heading > span {
+    display: none;
+  }
+  .stats article,
+  section {
+    padding: 20px;
+  }
+  .stats strong {
+    font-size: 27px;
+  }
+  .stats span {
+    font-size: 10px;
+  }
+  .message {
+    left: 16px;
+    right: 16px;
+  }
+  .bar {
+    gap: 10px;
+  }
+  .bar span {
+    width: 80px;
+  }
+}
