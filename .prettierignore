@@ -1,0 +1,9 @@
+**/node_modules/**
+**/dist/**
+**/.next/**
+**/.expo/**
+**/package-lock.json
+supabase/seed.sql
+artifacts/
+**/next-env.d.ts
+**/expo-env.d.ts
