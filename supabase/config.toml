@@ -1,0 +1,21 @@
+project_id = "khet-doctor"
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+[db]
+port = 54322
+major_version = 15
+[db.seed]
+enabled = true
+sql_paths = ["./seed.sql"]
+[auth]
+enabled = true
+site_url = "http://localhost:5173"
+[auth.sms]
+enable_signup = true
+enable_confirmations = true
+[auth.sms.test_otp]
+"919999990001" = "123456"
+"919999990002" = "123456"
