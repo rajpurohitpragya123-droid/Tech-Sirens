@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "खेत Doctor",
+    "slug": "khet-doctor",
+    "scheme": "khetdoctor",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": { "package": "in.khetdoctor.app" },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-camera",
+        { "cameraPermission": "Allow खेत Doctor to photograph a crop for diagnosis." }
+      ],
+      [
+        "expo-location",
+        { "locationWhenInUsePermission": "Allow location to find nearby farm services." }
+      ]
+    ],
+    "experiments": { "typedRoutes": true }
+  }
+}
