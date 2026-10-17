@@ -1,0 +1,13 @@
+{
+  "name": "@khet-doctor/iot",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node worker.mjs",
+    "simulate": "node simulator.mjs"
+  },
+  "dependencies": {
+    "mqtt": "^5.14.0",
+    "zod": "^3.25.0"
+  }
+}
