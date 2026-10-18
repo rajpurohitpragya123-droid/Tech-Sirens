@@ -19,7 +19,8 @@ export function createServer() {
       });
       res.end(JSON.stringify(data));
     };
-    if (req.method === 'GET' && req.url === '/health') return send(200, { ok: true, mode: 'mock' });
+    const path = (req.url || '/').replace(/^\/api(?=\/|$)/, '') || '/';
+    if (req.method === 'GET' && (path === '/health' || path === '/')) return send(200, { ok: true, mode: 'mock' });
     if (req.method !== 'POST') return send(404, { error: 'Not found' });
     try {
       let raw = '';
@@ -35,16 +36,16 @@ export function createServer() {
       }
       if (!body || typeof body !== 'object' || Array.isArray(body))
         return send(400, { error: 'Object required' });
-      if (req.url === '/intent') {
+      if (path === '/intent') {
         if (typeof body.text !== 'string' || body.text.length > 1000)
           return send(400, { error: 'Text must be under 1000 characters' });
         return send(200, await routeIntent(body.text));
       }
-      if (req.url === '/diagnose') {
+      if (path === '/diagnose') {
         if (typeof body.crop !== 'string') return send(400, { error: 'Crop required' });
         return send(200, await diagnosis.predict(body));
       }
-      if (req.url === '/translate') {
+      if (path === '/translate') {
         if (
           typeof body.text !== 'string' ||
           body.text.length > 5000 ||
@@ -64,3 +65,8 @@ if (process.argv[1]?.endsWith('server.mjs')) {
   const port = Number(process.env.API_PORT || 8787);
   createServer().listen(port, '127.0.0.1', () => console.log(`Mock API http://127.0.0.1:${port}`));
 }
+const defaultServer = createServer();
+export default function handler(req, res) {
+  defaultServer.emit('request', req, res);
+}
+
