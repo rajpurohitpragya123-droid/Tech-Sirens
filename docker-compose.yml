@@ -1,0 +1,9 @@
+services:
+  ml:
+    profiles: [demo]
+    build:
+      context: .
+      dockerfile: services/ml/Dockerfile
+    environment:
+      MOCK_MODE: 'true'
+    ports: ['127.0.0.1:8000:8000']

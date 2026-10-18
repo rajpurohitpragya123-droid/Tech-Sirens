@@ -1,0 +1,40 @@
+services:
+  ml:
+    profiles: [demo]
+    build:
+      context: .
+      dockerfile: services/ml/Dockerfile
+    environment:
+      MOCK_MODE: 'true'
+    ports: ['127.0.0.1:8000:8000']
+  mosquitto:
+    profiles: [demo]
+    image: eclipse-mosquitto:2
+    volumes: ['./services/iot/mosquitto.demo.conf:/mosquitto/config/mosquitto.conf:ro']
+    networks: [iot_demo]
+  iot:
+    profiles: [demo]
+    build:
+      context: .
+      dockerfile: services/iot/Dockerfile
+    environment: &iot_env
+      IOT_DEMO: 'true'
+      MQTT_URL: mqtt://mosquitto:1883
+      DEVICE_FIELDS: '{"00000000-0000-4000-8000-000000001500":"00000000-0000-4000-8000-000000000101","00000000-0000-4000-8000-000000001501":"00000000-0000-4000-8000-000000000102","00000000-0000-4000-8000-000000001502":"00000000-0000-4000-8000-000000000103"}'
+    volumes: ['iot_state:/app/services/iot/runtime']
+    depends_on: [mosquitto]
+    networks: [iot_demo]
+  simulator:
+    profiles: [demo]
+    build:
+      context: .
+      dockerfile: services/iot/Dockerfile
+    command: ['node', 'simulator.mjs']
+    environment: *iot_env
+    depends_on: [mosquitto]
+    networks: [iot_demo]
+networks:
+  iot_demo:
+    internal: true
+volumes:
+  iot_state:
