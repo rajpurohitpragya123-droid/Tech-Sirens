@@ -1,0 +1,13 @@
+import { readdir, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+const dist = new URL('../dist/', import.meta.url);
+const files = (await readdir(new URL('assets/', dist))).map((f) => `/assets/${f}`);
+files.push(...(await readdir(new URL('images/', dist))).map(f=>`/images/${f}`));
+const html = await readFile(new URL('index.html', dist), 'utf8');
+const version = createHash('sha256').update(html).digest('hex').slice(0, 12);
+const worker = `const CACHE='khet-${version}';const FILES=${JSON.stringify(['/', '/index.html', ...files])};
+self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)));self.skipWaiting();});
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('khet-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+self.addEventListener('fetch',e=>{if(e.request.method!=='GET'||new URL(e.request.url).origin!==self.location.origin)return;if(e.request.mode==='navigate'){e.respondWith(fetch(e.request).catch(()=>caches.match('/index.html')));return;}e.respondWith(caches.match(e.request).then(cached=>cached||fetch(e.request)));});`;
+await writeFile(new URL('sw.js', dist), worker);
+console.log(`Offline shell: ${files.length} assets, version ${version}`);

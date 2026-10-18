@@ -1,0 +1,10 @@
+{
+  "name": "खेत Doctor",
+  "short_name": "खेत Doctor",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8f9f5",
+  "theme_color": "#31583e",
+  "lang": "en",
+  "description": "A seeded farming companion demo"
+}
